@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 import React, { FC } from 'react';
 import Button from '../UI/Button'
+import { Navigate } from 'react-router-dom'
 
 type Props = {
 
@@ -14,6 +15,8 @@ type State = {
     errorEmail: string,
     errorSubject: string,
     errorMessage: string
+    errorServer: string,
+    serverResponse: boolean
 
 }
 export default class ContactMe extends React.Component<Props, State> {
@@ -35,13 +38,15 @@ export default class ContactMe extends React.Component<Props, State> {
         message: "",
         errorEmail: "",
         errorSubject: "",
-        errorMessage: ""
+        errorMessage: "",
+        errorServer:"",
+        serverResponse: false
     }
 
 
 
     setEmail = (event: React.FocusEvent<HTMLInputElement>) => {
-        console.log("boo")
+
         this.setState({ email: event.target.value });
     };
     setSubject = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -50,7 +55,7 @@ export default class ContactMe extends React.Component<Props, State> {
     setMessage = (event: React.FocusEvent<HTMLTextAreaElement>) => {
         this.setState({ message: event.target.value });
     }
-    submitForm() {
+    async submitForm() {
 
         if (this.validateForm() == false) {
             return;
@@ -66,8 +71,17 @@ export default class ContactMe extends React.Component<Props, State> {
                 message: this.state.message
             })
         }
-        console.log(options)
-        fetch("http://localhost:8000/user/email/query", options).then((res) => res.json()).then((data) =>console.log(data)).catch((err) => console.log(err))
+        let response = await fetch(process.env.REACT_APP_API_URL + "/user/email/query", options)
+        let responseBody = await response.json()
+        
+        if(response.ok) {
+            this.setState({ serverResponse: true })
+        } else {
+            this.setState({ errorServer: "Server error!  Try resubmitting the form." })
+        }
+
+
+
 
     }
     resetForm() {
@@ -112,7 +126,12 @@ export default class ContactMe extends React.Component<Props, State> {
     }
 
     render() {
+        if(this.state.serverResponse){
+            return <Navigate to="/contactme/confirmation" />
+        }
         return (
+
+
             <div className="d-flex flex-column justify-content-center align-items-center p-3-sm p-5-md">
                 <h1 className='p-2'>Contact Me</h1>
                 <div style={this.style} className="d-flex-inline flex-column justify-content-center align-items-center">
@@ -132,6 +151,7 @@ export default class ContactMe extends React.Component<Props, State> {
                     <textarea id="n-message" onChange={this.setMessage} className="p-2" placeholder="Put your message here!" style={this.textareastyle} ></textarea>
                     <div className="p-1" style={{ minHeight: 40, color: "red", fontWeight: "bold" }}>{this.state.errorMessage}</div>
                     <Button text="Submit" buttonFunction={this.submitForm.bind(this)} />
+                    <div className="p-1" style={{ minHeight: 40, color: "red", fontWeight: "bold" }}>{this.state.errorServer}</div>
 
                 </div>
 

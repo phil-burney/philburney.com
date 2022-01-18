@@ -4,5 +4,5 @@ class Middleware:
 
     def __call__(self, request):
         response = self.get_response(request)
-        response['Access-Control-Allow-Credentials'] = 'true'
+        response["Access-Control-Allow-Credentials"] = "true"
         return response

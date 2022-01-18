@@ -7,6 +7,7 @@ type PortfolioHolder = {
   language: string
   frameworks: string
   link: string
+  text:string
 
 }
 let style = {
@@ -20,7 +21,7 @@ let imgstyle = {
   border: "solid grey 1px"
 }
 
-const Title: FC<PortfolioHolder> = ({ title, imageSource, description, language, frameworks, link }) => {
+const Title: FC<PortfolioHolder> = ({ title, imageSource, description, language, frameworks, link,text }) => {
   return (
     <div className="my-3 d-flex flex-column" style={style}>
       <h2 className="p-3">{title}</h2>
@@ -44,7 +45,7 @@ const Title: FC<PortfolioHolder> = ({ title, imageSource, description, language,
             </tr>
             <tr>
               <td>Link:</td>
-              <td><a href = {link}>{link}</a></td>
+              <td><a href = {link}>{text}</a></td>
             </tr>
           </tbody>
         </table>

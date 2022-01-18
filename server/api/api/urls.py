@@ -18,7 +18,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('user/email/query', views.email_query_response)
-
+    path("admin/", admin.site.urls),
+    path("user/email/query", views.email_query_response),
 ]
