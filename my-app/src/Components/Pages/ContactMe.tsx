@@ -71,7 +71,7 @@ export default class ContactMe extends React.Component<Props, State> {
                 message: this.state.message
             })
         }
-        let response = await fetch(process.env.REACT_APP_API_URL + "/user/email/query", options)
+        let response = await fetch(process.env.REACT_APP_API_URL + "/api/user/email/query", options)
         let responseBody = await response.json()
         
         if(response.ok) {

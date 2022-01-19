@@ -19,5 +19,6 @@ from . import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("user/email/query", views.email_query_response),
+    path("api/user/email/query", views.email_query_response),
+     path("api", views.api_response),
 ]

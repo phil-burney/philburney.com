@@ -132,10 +132,10 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-ALLOWED_HOSTS = ["localhost", "http://localhost:3000"]
+ALLOWED_HOSTS = ["localhost", "http://localhost:3000", "https://philburney.com"]
 
 CORS_ORIGIN_ALLOW_ALL = False
 
-CORS_ORIGIN_WHITELIST = ("http://localhost:3000",)
+CORS_ORIGIN_WHITELIST = ("http://localhost:3000", "https://philburney.com")
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "https://philburney.com"]

@@ -25,3 +25,5 @@ def email_query_response(request):
     returnThis = JsonResponse(obj)
     returnThis.status_code = response.status_code
     return returnThis
+def api_response(request):
+    return JsonResponse({'message':'The API works!'})
