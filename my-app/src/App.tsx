@@ -17,7 +17,6 @@ function App() {
   return (
     <div className="App">
       <NavBar>
-        <NavLogo/>
         <NavButton text="About Me" link="/aboutme" /> 
         <NavButton text="About The Website" link="/aboutwebsite" /> 
         <NavButton text="Resume" link="/resume" /> 

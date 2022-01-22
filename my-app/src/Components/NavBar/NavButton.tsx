@@ -39,7 +39,7 @@ let mouseover = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
 }
 const Title: FC<NavButtonProps> = ({ link, text }) => {
   return (
-      <div className="p-2 mb-2" onMouseOut = {reset} onMouseOver={mouseover}>
+      <div className="pb-2 mb-2" onMouseOut = {reset} onMouseOver={mouseover}>
     <a  className="p-2 m-1 align-bottom" href={link} style={style}>{text}</a>
     <div style={underlinestyle}></div>
     </div>
