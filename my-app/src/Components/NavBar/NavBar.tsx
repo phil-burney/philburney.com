@@ -17,8 +17,10 @@ const Title: FC<NavBar> = ({ children }) => {
     <div className="d-none d-md-flex align-items-end justify-content-end flex-fill pe-2" >
       {children}
     </div>
-    <div className="d-md-none p-2 d-flex flex-fill justify-content-center" >
-      <Dropdown text="Menu"/>
+    <div className="d-md-none p-2 me-2 d-flex flex-fill justify-content-end" >
+      <Dropdown image="../../menu1.svg">
+      {children}
+      </Dropdown>
     </div>
     </div>
   );
